@@ -1,21 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
-/**
- *
- * @author herme
- */
+import static com.itextpdf.text.pdf.PdfFileSpecification.url;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class FUsuarios extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FUsuarios.class.getName());
 
-    /**
-     * Creates new form FUsuarios
-     */
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FUsuarios.class.getName());
+    //----------------------------------------------------------------------------------//
+    String url = "http://gts220716711.webcindario.com/mysql.php";
+    ConexionHR cnx = new ConexionHR(url);
+
+
+
+    //----------------------------------------------------------------------------------//
     public FUsuarios() {
         initComponents();
+
+        setLocationRelativeTo(this);
+
     }
 
     /**
@@ -27,21 +30,441 @@ public class FUsuarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PTitulo = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        PFormulario = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        TNombre = new javax.swing.JTextField();
+        Tid = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        TNumero = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TUsuarios = new javax.swing.JTable();
+        jToolBar1 = new javax.swing.JToolBar();
+        BOrdenar = new javax.swing.JButton();
+        BNuevo = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        BAgregar = new javax.swing.JButton();
+        BActualizar = new javax.swing.JButton();
+        BBorrar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        BPdf = new javax.swing.JButton();
+        BGrafica = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
+        jLabel3 = new javax.swing.JLabel();
+        TFiltroGrupo = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JToolBar.Separator();
+        jLabel6 = new javax.swing.JLabel();
+        TFiltroCiclo = new javax.swing.JTextField();
+        BBuscarAlumnos = new javax.swing.JButton();
+        PFondo = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        PTitulo.setBackground(new java.awt.Color(0, 0, 51));
+        PTitulo.setLayout(null);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel11.setText("USUARIOS");
+        PTitulo.add(jLabel11);
+        jLabel11.setBounds(150, 8, 250, 40);
+        PTitulo.add(jLabel8);
+        jLabel8.setBounds(19, 17, 0, 60);
+        PTitulo.add(jLabel10);
+        jLabel10.setBounds(0, 0, 1120, 90);
+
+        PFormulario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Paciente:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+
+        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(78, 80, 82));
+        jLabel1.setText("idusuario");
+
+        jLabel2.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(78, 80, 82));
+        jLabel2.setText("NOMBRE:");
+
+        jLabel5.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(78, 80, 82));
+        jLabel5.setText("numero");
+
+        javax.swing.GroupLayout PFormularioLayout = new javax.swing.GroupLayout(PFormulario);
+        PFormulario.setLayout(PFormularioLayout);
+        PFormularioLayout.setHorizontalGroup(
+            PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PFormularioLayout.createSequentialGroup()
+                .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PFormularioLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Tid, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PFormularioLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(TNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(194, 194, 194)))
+                .addGap(22, 22, 22))
+            .addGroup(PFormularioLayout.createSequentialGroup()
+                .addGap(2, 2, 2)
+                .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PFormularioLayout.setVerticalGroup(
+            PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PFormularioLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Tid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(TNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(135, 135, 135))
+        );
+
+        TUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TUsuariosMousePressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TUsuarios);
+
+        jToolBar1.setRollover(true);
+
+        BOrdenar.setText("ORDENAR");
+        BOrdenar.setFocusable(false);
+        BOrdenar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BOrdenar.setMaximumSize(new java.awt.Dimension(100, 70));
+        BOrdenar.setMinimumSize(new java.awt.Dimension(100, 70));
+        BOrdenar.setPreferredSize(new java.awt.Dimension(100, 70));
+        BOrdenar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BOrdenarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BOrdenar);
+
+        BNuevo.setText("NUEVO");
+        BNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BNuevo.setMaximumSize(new java.awt.Dimension(100, 70));
+        BNuevo.setMinimumSize(new java.awt.Dimension(100, 70));
+        BNuevo.setPreferredSize(new java.awt.Dimension(100, 70));
+        BNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BNuevoActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BNuevo);
+        jToolBar1.add(jSeparator2);
+
+        BAgregar.setText("AGREGAR");
+        BAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BAgregar.setMaximumSize(new java.awt.Dimension(100, 70));
+        BAgregar.setMinimumSize(new java.awt.Dimension(100, 70));
+        BAgregar.setPreferredSize(new java.awt.Dimension(100, 70));
+        BAgregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BAgregarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BAgregar);
+
+        BActualizar.setText("ACTUALIZAR");
+        BActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BActualizar.setMaximumSize(new java.awt.Dimension(100, 70));
+        BActualizar.setMinimumSize(new java.awt.Dimension(100, 70));
+        BActualizar.setPreferredSize(new java.awt.Dimension(100, 70));
+        BActualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BActualizarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BActualizar);
+
+        BBorrar.setText("BORRAR");
+        BBorrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BBorrar.setMaximumSize(new java.awt.Dimension(100, 70));
+        BBorrar.setMinimumSize(new java.awt.Dimension(100, 70));
+        BBorrar.setPreferredSize(new java.awt.Dimension(100, 70));
+        BBorrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBorrarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BBorrar);
+        jToolBar1.add(jSeparator1);
+
+        BPdf.setText("PDF");
+        BPdf.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BPdf.setMaximumSize(new java.awt.Dimension(100, 70));
+        BPdf.setMinimumSize(new java.awt.Dimension(100, 70));
+        BPdf.setPreferredSize(new java.awt.Dimension(100, 70));
+        BPdf.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BPdfActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BPdf);
+
+        BGrafica.setText("GRAFICA");
+        BGrafica.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BGrafica.setMaximumSize(new java.awt.Dimension(100, 70));
+        BGrafica.setMinimumSize(new java.awt.Dimension(100, 70));
+        BGrafica.setPreferredSize(new java.awt.Dimension(100, 70));
+        BGrafica.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BGrafica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BGraficaActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BGrafica);
+        jToolBar1.add(jSeparator3);
+
+        jLabel3.setText("GRUPO:");
+        jToolBar1.add(jLabel3);
+
+        TFiltroGrupo.setMaximumSize(new java.awt.Dimension(150, 50));
+        TFiltroGrupo.setMinimumSize(new java.awt.Dimension(150, 50));
+        TFiltroGrupo.setPreferredSize(new java.awt.Dimension(150, 50));
+        jToolBar1.add(TFiltroGrupo);
+        jToolBar1.add(jSeparator4);
+
+        jLabel6.setText("CICLO:");
+        jToolBar1.add(jLabel6);
+
+        TFiltroCiclo.setMaximumSize(new java.awt.Dimension(150, 50));
+        TFiltroCiclo.setMinimumSize(new java.awt.Dimension(150, 50));
+        TFiltroCiclo.setPreferredSize(new java.awt.Dimension(150, 50));
+        jToolBar1.add(TFiltroCiclo);
+
+        BBuscarAlumnos.setText("BUSCAR");
+        BBuscarAlumnos.setFocusable(false);
+        BBuscarAlumnos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BBuscarAlumnos.setMaximumSize(new java.awt.Dimension(100, 70));
+        BBuscarAlumnos.setMinimumSize(new java.awt.Dimension(100, 70));
+        BBuscarAlumnos.setPreferredSize(new java.awt.Dimension(100, 70));
+        BBuscarAlumnos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BBuscarAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBuscarAlumnosActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BBuscarAlumnos);
+
+        PFondo.setBackground(new java.awt.Color(255, 255, 204));
+        PFondo.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(PTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(PFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(PFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1187, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(PTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TUsuariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TUsuariosMousePressed
+        DefaultTableModel datos = (DefaultTableModel) TUsuarios.getModel();
+        int renSel = TUsuarios.getSelectedRow();
+
+        if (renSel > -1) {
+            String id = datos.getValueAt(renSel, 0).toString();
+            String nom = datos.getValueAt(renSel, 1).toString();
+            String num = cnx.obtenerDato("SELECT email FROM alumnos WHERE idalumnos = '" + id + "' ");
+
+            Tid.setText(id);
+            TNombre.setText(nom);
+            TNumero.setText(num);
+
+
+        }
+    }//GEN-LAST:event_TUsuariosMousePressed
+
+    private void BOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BOrdenarActionPerformed
+        String sql = "SELECT idusuario, nombre, ciclo "
+                + "FROM alumnos "
+                + "ORDER BY ciclo, nombrea ";
+
+        cnx.entablar(sql, TUsuarios);
+    }//GEN-LAST:event_BOrdenarActionPerformed
+
+    private void BNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNuevoActionPerformed
+        Tid.setText("");
+        TNombre.setText("");
+        TNumero.setText("");
+    }//GEN-LAST:event_BNuevoActionPerformed
+
+    private void BAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAgregarActionPerformed
+//        String id = Tid.getText().trim();
+//        String nom = TNombre.getText().trim();
+//        String ciclo = TCiclo.getText().trim();
+//        String grupo = TGrupo.getText().trim();
+//        String email = TGmail.getText().trim();
+//        String estado = CBEstado.getSelectedItem().toString();
+//
+//        if (id.isEmpty() || nom.isEmpty()) {
+//            javax.swing.JOptionPane.showMessageDialog(this,
+//                "ID y Nombre son obligatorios.",
+//                "Datos incompletos",
+//                javax.swing.JOptionPane.WARNING_MESSAGE);
+//            return;
+//        }
+//
+//        int ok = insertarAlumnoAPI(id, nom, ciclo, grupo, email, estado);
+//
+//        if (ok == 1) {
+//            javax.swing.JOptionPane.showMessageDialog(this,
+//                "Alumno agregado correctamente.",
+//                "Éxito",
+//                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+//
+//            // Recargar la tabla de alumnos
+//            String consulta = "SELECT idalumnos, nombrea, ciclo FROM alumnos ORDER BY nombrea";
+//            cnx.entablar(consulta, TAlumnos);
+//
+//        } else {
+//            javax.swing.JOptionPane.showMessageDialog(this,
+//                "No se pudo agregar el alumno. Revisa la consola (RESPUESTA API).",
+//                "Error",
+//                javax.swing.JOptionPane.ERROR_MESSAGE);
+//        }
+    }//GEN-LAST:event_BAgregarActionPerformed
+
+    private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BActualizarActionPerformed
+//        String id = Tid.getText();
+//        String nom = TNombre.getText();
+//        String ciclo = TCiclo.getText();
+//        String estado = CBEstado.getSelectedItem().toString();
+//        String gm = TGmail.getText();
+//        String gru = TGrupo.getText();
+//
+//        String[] valores = new String[]{id, nom, ciclo, estado, gm, gru};
+//
+//        cnx.actualizar("alumnos", valores);
+//        cnx.entablar(alumnos, TAlumnos);
+    }//GEN-LAST:event_BActualizarActionPerformed
+
+    private void BBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBorrarActionPerformed
+//        String id = Tid.getText();
+//        String nom = TNombre.getText();
+//        String ciclo = TCiclo.getText();
+//        String estado = CBEstado.getSelectedItem().toString();
+//        String gm = TGmail.getText();
+//        String gru = TGrupo.getText();
+//
+//        String[] valores = new String[]{id, nom, ciclo, estado, gm, gru};
+//
+//        cnx.borrar("alumnos", valores);
+//        cnx.entablar(alumnos, TAlumnos);
+    }//GEN-LAST:event_BBorrarActionPerformed
+
+    private void BPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BPdfActionPerformed
+//        String id = Tid.getText();
+//        String query = niveles + "WHERE alumnos_idalumnos = '" + id + "' " + grupo;
+//
+//        int ok = cnx.crearPDF("Tarea", "Promedio Mensual de Tareas",
+//            query, new float[]{0.5f, 0.5f}, "promedio_mensual");
+//
+//        if (ok == 1) {
+//            cnx.visualizarPDF("promedio_mensual");
+//
+//        } else {
+//            System.out.println("PDF no generado");
+//        }
+    }//GEN-LAST:event_BPdfActionPerformed
+
+    private void BGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGraficaActionPerformed
+//        String id = Tid.getText();
+//        String query = niveles + "WHERE alumnos_idalumnos = '" + id + "' " + grupo;
+//
+//        ArrayList<String> series = new ArrayList();
+//        ArrayList<ArrayList<String>> datos = new ArrayList();
+//
+//        datos = cnx.consultar(query);
+//
+//        series.add(id);
+//
+//        GraficaXY graf = new GraficaXY("Promedio Mensual de Tareas", "Meses", "Promedio", series, datos);
+//
+//        PFondo.removeAll();
+//        PFondo.add(graf.chartPanel);
+//        PFondo.updateUI();
+    }//GEN-LAST:event_BGraficaActionPerformed
+
+    private void BBuscarAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarAlumnosActionPerformed
+        String grupo = TFiltroGrupo.getText().trim();
+        String ciclo = TFiltroCiclo.getText().trim();
+
+        String sql = "SELECT idalumnos, nombrea, ciclo, grupo, email, estatus "
+                + "FROM alumnos WHERE 1=1 ";
+
+        if (!grupo.isEmpty()) {
+            sql += " AND grupo LIKE '%" + grupo + "%' ";
+        }
+        if (!ciclo.isEmpty()) {
+            sql += " AND ciclo LIKE '%" + ciclo + "%' ";
+        }
+
+        sql += " ORDER BY grupo, nombrea ";
+
+        cnx.entablar(sql, TUsuarios);
+    }//GEN-LAST:event_BBuscarAlumnosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -69,5 +492,36 @@ public class FUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BActualizar;
+    private javax.swing.JButton BAgregar;
+    private javax.swing.JButton BBorrar;
+    private javax.swing.JButton BBuscarAlumnos;
+    private javax.swing.JButton BGrafica;
+    private javax.swing.JButton BNuevo;
+    private javax.swing.JButton BOrdenar;
+    private javax.swing.JButton BPdf;
+    private javax.swing.JPanel PFondo;
+    private javax.swing.JPanel PFormulario;
+    private javax.swing.JPanel PTitulo;
+    private javax.swing.JTextField TFiltroCiclo;
+    private javax.swing.JTextField TFiltroGrupo;
+    private javax.swing.JTextField TNombre;
+    private javax.swing.JTextField TNumero;
+    private javax.swing.JTable TUsuarios;
+    private javax.swing.JTextField Tid;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JToolBar.Separator jSeparator4;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }
