@@ -12,7 +12,16 @@ public class FUsuarios extends javax.swing.JFrame {
     String url = "http://whatsappweb.webcindario.com/mysql.php";
     ConexionHR cnx = new ConexionHR(url);
 
+    String usuarios = "SELECT idusuarios, nombreu, telefono FROM usuarios ORDER BY nombreu ";
+
+    String niveles = "SELECT LEFT(nombreu, 1) as letra, COUNT(*) as total "
+            + "FROM usuarios"
+            + "WHERE nombreu IS NOT NULL AND nombreu != ''"
+            + " GROUP BY LEFT(nombreu, 1) "
+            + "ORDER BY letra ASC ";
+    String grupo = "GROUP BY telefono ";
     //----------------------------------------------------------------------------------//
+
     public FUsuarios() {
         initComponents();
 
@@ -389,7 +398,7 @@ public class FUsuarios extends javax.swing.JFrame {
         String[] valores = new String[]{id, nom, num};
 
         cnx.actualizar("usuarios", valores);
-        cnx.entablar(num, TUsuarios);
+        cnx.entablar(usuarios, TUsuarios);
     }//GEN-LAST:event_BActualizarActionPerformed
 
     private void BBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBorrarActionPerformed
@@ -523,7 +532,6 @@ public class FUsuarios extends javax.swing.JFrame {
             System.out.println("id=" + id);
             System.out.println("nombre=" + nombre);
             System.out.println("ciclo=" + numero);
-
 
             StringBuilder postData = new StringBuilder();
 
