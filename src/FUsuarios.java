@@ -334,7 +334,7 @@ public class FUsuarios extends javax.swing.JFrame {
         if (renSel > -1) {
             String id = datos.getValueAt(renSel, 0).toString();
             String nom = datos.getValueAt(renSel, 1).toString();
-            String num = cnx.obtenerDato("SELECT email FROM alumnos WHERE idalumnos = '" + id + "' ");
+            String num = cnx.obtenerDato("SELECT telefono FROM usuarios WHERE idusuarios = '" + id + "' ");
 
             Tid.setText(id);
             TNombre.setText(nom);
@@ -374,7 +374,7 @@ public class FUsuarios extends javax.swing.JFrame {
 
         if (ok == 1) {
             javax.swing.JOptionPane.showMessageDialog(this,
-                    "Alumno agregado correctamente.",
+                    "usuario agregado correctamente.",
                     "Éxito",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
@@ -384,7 +384,7 @@ public class FUsuarios extends javax.swing.JFrame {
 
         } else {
             javax.swing.JOptionPane.showMessageDialog(this,
-                    "No se pudo agregar el alumno. Revisa la consola (RESPUESTA API).",
+                    "No se pudo agregar el usuario. Revisa la consola (RESPUESTA API).",
                     "Error",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
         }
@@ -414,13 +414,13 @@ public class FUsuarios extends javax.swing.JFrame {
 
     private void BPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BPdfActionPerformed
         String id = Tid.getText();
-        String query = niveles + "WHERE alumnos_idalumnos = '" + id + "' " + grupo;
+        String query = niveles + "WHERE usuarios_idusuarios = '" + id + "' " + grupo;
 
-        int ok = cnx.crearPDF("Tarea", "Promedio Mensual de Tareas",
-                query, new float[]{0.5f, 0.5f}, "promedio_mensual");
+        int ok = cnx.crearPDF("letra", "clasificacion por iniciales",
+                query, new float[]{0.5f, 0.5f}, "promedio");
 
         if (ok == 1) {
-            cnx.visualizarPDF("promedio_mensual");
+            cnx.visualizarPDF("promedio");
 
         } else {
             System.out.println("PDF no generado");
@@ -429,7 +429,7 @@ public class FUsuarios extends javax.swing.JFrame {
 
     private void BGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGraficaActionPerformed
         String id = Tid.getText();
-        String query = niveles + "WHERE alumnos_idalumnos = '" + id + "' " + grupo;
+        String query = niveles + "WHERE usuarios_idusuarios = '" + id + "' " + grupo;
 
         ArrayList<String> series = new ArrayList();
         ArrayList<ArrayList<String>> datos = new ArrayList();
@@ -438,7 +438,7 @@ public class FUsuarios extends javax.swing.JFrame {
 
         series.add(id);
 
-        GraficaXY graf = new GraficaXY("Promedio Mensual de Tareas", "Meses", "Promedio", series, datos);
+        GraficaXY graf = new GraficaXY("clasificacion por iniciales", "letras", "Promedio", series, datos);
 
         PFondo.removeAll();
         PFondo.add(graf.chartPanel);
