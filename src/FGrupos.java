@@ -5,24 +5,23 @@ import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-public class FUsuarios extends javax.swing.JFrame {
+public class FGrupos extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FUsuarios.class.getName());
     //----------------------------------------------------------------------------------//
-    String url = "http://usuariosgrupos.webcindario.com/mysql.php";
+    String url = "http://whatsappweb.webcindario.com/mysql.php";
     ConexionHR cnx = new ConexionHR(url);
 
-    String usuarios = "SELECT idusuarios, nombreu, telefono FROM usuarios ORDER BY nombreu ";
+        
+    String gruposg = "SELECT nombreg, descripcion, fecha_creacion FROM grupos ORDER BY nombreg ";
 
-    String niveles = "SELECT LEFT(nombreu, 1) as letra, COUNT(*) as total "
-            + "FROM usuarios"
-            + "WHERE nombreu IS NOT NULL AND nombreu != ''"
-            + " GROUP BY LEFT(nombreu, 1) "
-            + "ORDER BY letra ASC ";
-    String grupo = "GROUP BY telefono ";
+    String niveles = "SELECT DATE_FORMAT(fecha_creacion, '%M %Y') as mes, COUNT(*) as total "
+            + "FROM grupos "
+            + "ORDER BY fecha_creacion ASC ";
+    String grupo = "GROUP BY DATE_FORMAT(fecha_creacion, '%Y-%m') ";
     //----------------------------------------------------------------------------------//
 
-    public FUsuarios() {
+    public FGrupos() {
         initComponents();
 
         setLocationRelativeTo(this);
@@ -45,10 +44,10 @@ public class FUsuarios extends javax.swing.JFrame {
         PFormulario = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        TNombre = new javax.swing.JTextField();
-        Tid = new javax.swing.JTextField();
+        TFDesc = new javax.swing.JTextField();
+        TFIdG = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        TNumero = new javax.swing.JTextField();
+        TFecha = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         TUsuarios = new javax.swing.JTable();
         jToolBar1 = new javax.swing.JToolBar();
@@ -77,7 +76,7 @@ public class FUsuarios extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel11.setText("USUARIOS");
+        jLabel11.setText("GRUPOS");
         PTitulo.add(jLabel11);
         jLabel11.setBounds(40, 20, 250, 40);
         PTitulo.add(jLabel8);
@@ -90,17 +89,17 @@ public class FUsuarios extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(78, 80, 82));
-        jLabel1.setText("idusuario");
+        jLabel1.setText("NOMBRE");
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 204));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(78, 80, 82));
-        jLabel2.setText("NOMBRE:");
+        jLabel2.setText("DESCRIPCION");
 
         jLabel5.setBackground(new java.awt.Color(204, 204, 204));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(78, 80, 82));
-        jLabel5.setText("numero");
+        jLabel5.setText("FECHA");
 
         javax.swing.GroupLayout PFormularioLayout = new javax.swing.GroupLayout(PFormulario);
         PFormulario.setLayout(PFormularioLayout);
@@ -110,22 +109,18 @@ public class FUsuarios extends javax.swing.JFrame {
                 .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PFormularioLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PFormularioLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
                         .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Tid, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PFormularioLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(TNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(194, 194, 194)))
-                .addGap(22, 22, 22))
-            .addGroup(PFormularioLayout.createSequentialGroup()
-                .addGap(2, 2, 2)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(TFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TFDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TFIdG, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
         PFormularioLayout.setVerticalGroup(
             PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,15 +128,15 @@ public class FUsuarios extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(Tid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFIdG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(TNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(135, 135, 135))
         );
 
@@ -334,33 +329,33 @@ public class FUsuarios extends javax.swing.JFrame {
         if (renSel > -1) {
             String id = datos.getValueAt(renSel, 0).toString();
             String nom = datos.getValueAt(renSel, 1).toString();
-            String num = cnx.obtenerDato("SELECT telefono FROM usuarios WHERE idusuarios = '" + id + "' ");
+            String fec = datos.getValueAt(renSel, 2).toString();
 
-            Tid.setText(id);
-            TNombre.setText(nom);
-            TNumero.setText(num);
+            TFIdG.setText(id);
+            TFDesc.setText(nom);
+            TFecha.setText(fec);
 
         }
     }//GEN-LAST:event_TUsuariosMousePressed
 
     private void BOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BOrdenarActionPerformed
-        String sql = "SELECT idusuario, nombre, telefono "
-                + "FROM usuarios "
-                + "ORDER BY nombre ";
+        String sql = "SELECT nombreg, descripcion, fecha_creacion "
+                + "FROM grupos "
+                + "ORDER BY nombreg ";
 
         cnx.entablar(sql, TUsuarios);
     }//GEN-LAST:event_BOrdenarActionPerformed
 
     private void BNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNuevoActionPerformed
-        Tid.setText("");
-        TNombre.setText("");
-        TNumero.setText("");
+        TFIdG.setText("");
+        TFDesc.setText("");
+        TFecha.setText("");
     }//GEN-LAST:event_BNuevoActionPerformed
 
     private void BAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAgregarActionPerformed
-        String id = Tid.getText().trim();
-        String nom = TNombre.getText().trim();
-        String num = TNumero.getText().trim();
+        String id = TFIdG.getText().trim();
+        String nom = TFDesc.getText().trim();
+        String fec = TFecha.getText().trim();
 
         if (id.isEmpty() || nom.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this,
@@ -370,66 +365,67 @@ public class FUsuarios extends javax.swing.JFrame {
             return;
         }
 
-        int ok = insertarUsuarioAPI(id, nom, num);
+        int ok = insertarGruposAPI(id, nom, fec);
 
         if (ok == 1) {
             javax.swing.JOptionPane.showMessageDialog(this,
-                    "usuario agregado correctamente.",
+                    "Grupo agregado correctamente.",
                     "Éxito",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             // Recargar la tabla de alumnos
-            String consulta = "SELECT idusuario, nombreu, telefono FROM usuarios ORDER BY nombre";
+            String consulta = "SELECT nombreg, descripcion, fecha_creacion FROM grupos ORDER BY nombreg";
             cnx.entablar(consulta, TUsuarios);
 
         } else {
             javax.swing.JOptionPane.showMessageDialog(this,
-                    "No se pudo agregar el usuario. Revisa la consola (RESPUESTA API).",
+                    "No se pudo agregar el grupo. Revisa la consola (RESPUESTA API).",
                     "Error",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BAgregarActionPerformed
 
     private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BActualizarActionPerformed
-        String id = Tid.getText();
-        String nom = TNombre.getText();
-        String num = TNumero.getText().trim();
+        String id = TFIdG.getText();
+        String nom = TFDesc.getText();
+        String num = TFecha.getText().trim();
 
         String[] valores = new String[]{id, nom, num};
 
-        cnx.actualizar("usuarios", valores);
-        cnx.entablar(usuarios, TUsuarios);
+        cnx.actualizar("grupos", valores);
+        cnx.entablar(grupo, TUsuarios);
     }//GEN-LAST:event_BActualizarActionPerformed
 
     private void BBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBorrarActionPerformed
-        String id = Tid.getText();
-        String nom = TNombre.getText();
-        String num = TNumero.getText().trim();
+        String id = TFIdG.getText();
+        String nom = TFDesc.getText();
+        String num = TFecha.getText().trim();
 
         String[] valores = new String[]{id, nom, num};
 
-        cnx.borrar("alumnos", valores);
+        cnx.borrar("grupos", valores);
         cnx.entablar(num, TUsuarios);
     }//GEN-LAST:event_BBorrarActionPerformed
 
     private void BPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BPdfActionPerformed
-        String id = Tid.getText();
-        String query = niveles + "WHERE usuarios_idusuarios = '" + id + "' " + grupo;
+         String id = TFIdG.getText();
+        String query = niveles + "WHERE nombreg = '" + id + "' " + grupo;
 
-        int ok = cnx.crearPDF("letra", "clasificacion por iniciales",
-                query, new float[]{0.5f, 0.5f}, "promedio");
+        int ok = cnx.crearPDF("Grupo", "Promedio Mensual de Grupos",
+                query, new float[]{0.5f, 0.5f}, "promedio_grupos");
 
         if (ok == 1) {
-            cnx.visualizarPDF("promedio");
+            cnx.visualizarPDF("promedio_grupos");
 
         } else {
             System.out.println("PDF no generado");
+        
         }
     }//GEN-LAST:event_BPdfActionPerformed
 
     private void BGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGraficaActionPerformed
-        String id = Tid.getText();
-        String query = niveles + "WHERE usuarios_idusuarios = '" + id + "' " + grupo;
+        String id = TFIdG.getText();
+        String query = niveles + "WHERE nombreg = '" + id + "' " + grupo;
 
         ArrayList<String> series = new ArrayList();
         ArrayList<ArrayList<String>> datos = new ArrayList();
@@ -446,20 +442,20 @@ public class FUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_BGraficaActionPerformed
 
     private void BBuscarAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarAlumnosActionPerformed
-        String nombre = TFNombre.getText().trim();
-        String numero = TFNumero.getText().trim();
+        String nombreg = TFNombre.getText().trim();
+        String descripcion = TFNumero.getText().trim();
 
-        String sql = "SELECT idusuarios, nombre, numero "
-                + "FROM usuarios WHERE 1=1 ";
+        String sql = "SELECT nombreg, descripcion, fecha_creacion "
+                + "FROM grupos WHERE 1=1 ";
 
-        if (!nombre.isEmpty()) {
-            sql += " AND nombre LIKE '%" + nombre + "%' ";
+        if (!nombreg.isEmpty()) {
+            sql += " AND nombreg LIKE '%" + nombreg + "%' ";
         }
-        if (!numero.isEmpty()) {
-            sql += " AND telefono LIKE '%" + numero + "%' ";
+        if (!descripcion.isEmpty()) {
+            sql += " AND descripcion LIKE '%" + descripcion + "%' ";
         }
 
-        sql += " ORDER BY nombre,telefono ";
+        sql += " ORDER BY nombreg ";
 
         cnx.entablar(sql, TUsuarios);
     }//GEN-LAST:event_BBuscarAlumnosActionPerformed
@@ -501,12 +497,12 @@ public class FUsuarios extends javax.swing.JFrame {
     private javax.swing.JPanel PFondo;
     private javax.swing.JPanel PFormulario;
     private javax.swing.JPanel PTitulo;
+    private javax.swing.JTextField TFDesc;
+    private javax.swing.JTextField TFIdG;
     private javax.swing.JTextField TFNombre;
     private javax.swing.JTextField TFNumero;
-    private javax.swing.JTextField TNombre;
-    private javax.swing.JTextField TNumero;
+    private javax.swing.JTextField TFecha;
     private javax.swing.JTable TUsuarios;
-    private javax.swing.JTextField Tid;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -523,24 +519,24 @@ public class FUsuarios extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
-    public int insertarUsuarioAPI(
-            String id, String nombre,
-            String numero) {
+    public int insertarGruposAPI(
+            String nombreg, String descripcion,
+            String fechac) {
 
         try {
-            System.out.println("DEBUG insertarAlumnoAPI() ********");
-            System.out.println("id=" + id);
-            System.out.println("nombre=" + nombre);
-            System.out.println("ciclo=" + numero);
+            System.out.println("DEBUG insertarGrupoAPI() ********");
+            System.out.println("id=" + nombreg);
+            System.out.println("nombre=" + descripcion);
+            System.out.println("fecha=" + fechac);
 
             StringBuilder postData = new StringBuilder();
 
             String[][] params = {
                 {"key", "secret"},
-                {"accion", "insertAlumno"},
-                {"idalumnos", id},
-                {"nombrea", nombre},
-                {"ciclo", numero}
+                {"accion", "insertGrupo"},
+                {"nombreg", nombreg},
+                {"descripcion", descripcion},
+                {"fecha_creacion", fechac}
             };
 
             for (int i = 0; i < params.length; i++) {
@@ -555,7 +551,7 @@ public class FUsuarios extends javax.swing.JFrame {
 
             byte[] postBytes = postData.toString().getBytes("UTF-8");
 
-            java.net.URL u = new java.net.URL("http://usuariosgrupos.webcindario.com/api_usuarios.php");
+            java.net.URL u = new java.net.URL("http://usuariosgrupos.webcindario.com/api_grupos.php");
             java.net.HttpURLConnection conn = (java.net.HttpURLConnection) u.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
@@ -570,7 +566,7 @@ public class FUsuarios extends javax.swing.JFrame {
             return respuesta.contains("OK") ? 1 : 0;
 
         } catch (Exception e) {
-            System.out.println("Error API insertUsuario: " + e.getMessage());
+            System.out.println("Error API insertGrupo: " + e.getMessage());
             e.printStackTrace(); // para ver el detalle exacto
             return 0;
         }
