@@ -34,7 +34,7 @@
               <Component id="PFondo" min="-2" pref="426" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Component id="jToolBar1" alignment="0" pref="1187" max="32767" attributes="0"/>
+          <Component id="jToolBar1" alignment="0" pref="1215" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -393,10 +393,10 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="GRUPO:"/>
+            <Property name="text" type="java.lang.String" value="NOMBRE"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TFiltroGrupo">
+        <Component class="javax.swing.JTextField" name="TFNombre">
           <Properties>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[150, 50]"/>
@@ -413,10 +413,10 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CICLO:"/>
+            <Property name="text" type="java.lang.String" value="TELEFONO"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TFiltroCiclo">
+        <Component class="javax.swing.JTextField" name="TFNumero">
           <Properties>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[150, 50]"/>

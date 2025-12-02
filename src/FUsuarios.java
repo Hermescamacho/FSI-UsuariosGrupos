@@ -55,10 +55,10 @@ public class FUsuarios extends javax.swing.JFrame {
         BGrafica = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         jLabel3 = new javax.swing.JLabel();
-        TFiltroGrupo = new javax.swing.JTextField();
+        TFNombre = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         jLabel6 = new javax.swing.JLabel();
-        TFiltroCiclo = new javax.swing.JTextField();
+        TFNumero = new javax.swing.JTextField();
         BBuscarAlumnos = new javax.swing.JButton();
         PFondo = new javax.swing.JPanel();
 
@@ -252,22 +252,22 @@ public class FUsuarios extends javax.swing.JFrame {
         jToolBar1.add(BGrafica);
         jToolBar1.add(jSeparator3);
 
-        jLabel3.setText("GRUPO:");
+        jLabel3.setText("NOMBRE");
         jToolBar1.add(jLabel3);
 
-        TFiltroGrupo.setMaximumSize(new java.awt.Dimension(150, 50));
-        TFiltroGrupo.setMinimumSize(new java.awt.Dimension(150, 50));
-        TFiltroGrupo.setPreferredSize(new java.awt.Dimension(150, 50));
-        jToolBar1.add(TFiltroGrupo);
+        TFNombre.setMaximumSize(new java.awt.Dimension(150, 50));
+        TFNombre.setMinimumSize(new java.awt.Dimension(150, 50));
+        TFNombre.setPreferredSize(new java.awt.Dimension(150, 50));
+        jToolBar1.add(TFNombre);
         jToolBar1.add(jSeparator4);
 
-        jLabel6.setText("CICLO:");
+        jLabel6.setText("TELEFONO");
         jToolBar1.add(jLabel6);
 
-        TFiltroCiclo.setMaximumSize(new java.awt.Dimension(150, 50));
-        TFiltroCiclo.setMinimumSize(new java.awt.Dimension(150, 50));
-        TFiltroCiclo.setPreferredSize(new java.awt.Dimension(150, 50));
-        jToolBar1.add(TFiltroCiclo);
+        TFNumero.setMaximumSize(new java.awt.Dimension(150, 50));
+        TFNumero.setMinimumSize(new java.awt.Dimension(150, 50));
+        TFNumero.setPreferredSize(new java.awt.Dimension(150, 50));
+        jToolBar1.add(TFNumero);
 
         BBuscarAlumnos.setText("BUSCAR");
         BBuscarAlumnos.setFocusable(false);
@@ -299,7 +299,7 @@ public class FUsuarios extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(PFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1187, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1215, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,9 +337,9 @@ public class FUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_TUsuariosMousePressed
 
     private void BOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BOrdenarActionPerformed
-        String sql = "SELECT idusuario, nombre, ciclo "
-                + "FROM alumnos "
-                + "ORDER BY ciclo, nombrea ";
+        String sql = "SELECT idusuario, nombre, telefono "
+                + "FROM usuarios "
+                + "ORDER BY nombre ";
 
         cnx.entablar(sql, TUsuarios);
     }//GEN-LAST:event_BOrdenarActionPerformed
@@ -448,20 +448,20 @@ public class FUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_BGraficaActionPerformed
 
     private void BBuscarAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarAlumnosActionPerformed
-        String grupo = TFiltroGrupo.getText().trim();
-        String ciclo = TFiltroCiclo.getText().trim();
+        String nombre = TFNombre.getText().trim();
+        String numero = TFNumero.getText().trim();
 
-        String sql = "SELECT idalumnos, nombrea, ciclo, grupo, email, estatus "
-                + "FROM alumnos WHERE 1=1 ";
+        String sql = "SELECT idusuarios, nombre, numero "
+                + "FROM usuarios WHERE 1=1 ";
 
-        if (!grupo.isEmpty()) {
-            sql += " AND grupo LIKE '%" + grupo + "%' ";
+        if (!nombre.isEmpty()) {
+            sql += " AND nombre LIKE '%" + nombre + "%' ";
         }
-        if (!ciclo.isEmpty()) {
-            sql += " AND ciclo LIKE '%" + ciclo + "%' ";
+        if (!numero.isEmpty()) {
+            sql += " AND telefono LIKE '%" + numero + "%' ";
         }
 
-        sql += " ORDER BY grupo, nombrea ";
+        sql += " ORDER BY nombre,telefono ";
 
         cnx.entablar(sql, TUsuarios);
     }//GEN-LAST:event_BBuscarAlumnosActionPerformed
@@ -503,8 +503,8 @@ public class FUsuarios extends javax.swing.JFrame {
     private javax.swing.JPanel PFondo;
     private javax.swing.JPanel PFormulario;
     private javax.swing.JPanel PTitulo;
-    private javax.swing.JTextField TFiltroCiclo;
-    private javax.swing.JTextField TFiltroGrupo;
+    private javax.swing.JTextField TFNombre;
+    private javax.swing.JTextField TFNumero;
     private javax.swing.JTextField TNombre;
     private javax.swing.JTextField TNumero;
     private javax.swing.JTable TUsuarios;
