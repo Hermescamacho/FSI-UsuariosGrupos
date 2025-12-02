@@ -1,7 +1,5 @@
 
-import static com.itextpdf.text.pdf.PdfFileSpecification.url;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FUsuarios extends javax.swing.JFrame {
@@ -10,8 +8,6 @@ public class FUsuarios extends javax.swing.JFrame {
     //----------------------------------------------------------------------------------//
     String url = "http://whatsappweb.webcindario.com/mysql.php";
     ConexionHR cnx = new ConexionHR(url);
-
-
 
     //----------------------------------------------------------------------------------//
     public FUsuarios() {
@@ -332,7 +328,6 @@ public class FUsuarios extends javax.swing.JFrame {
             TNombre.setText(nom);
             TNumero.setText(num);
 
-
         }
     }//GEN-LAST:event_TUsuariosMousePressed
 
@@ -353,14 +348,13 @@ public class FUsuarios extends javax.swing.JFrame {
     private void BAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAgregarActionPerformed
         String id = Tid.getText().trim();
         String nom = TNombre.getText().trim();
-        String num= TNumero.getText().trim();
-
+        String num = TNumero.getText().trim();
 
         if (id.isEmpty() || nom.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this,
-                "ID y Nombre son obligatorios.",
-                "Datos incompletos",
-                javax.swing.JOptionPane.WARNING_MESSAGE);
+                    "ID y Nombre son obligatorios.",
+                    "Datos incompletos",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -368,9 +362,9 @@ public class FUsuarios extends javax.swing.JFrame {
 
         if (ok == 1) {
             javax.swing.JOptionPane.showMessageDialog(this,
-                "Alumno agregado correctamente.",
-                "Éxito",
-                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    "Alumno agregado correctamente.",
+                    "Éxito",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
             // Recargar la tabla de alumnos
             String consulta = "SELECT idusuario, nombreu, telefono FROM usuarios ORDER BY nombre";
@@ -378,17 +372,16 @@ public class FUsuarios extends javax.swing.JFrame {
 
         } else {
             javax.swing.JOptionPane.showMessageDialog(this,
-                "No se pudo agregar el alumno. Revisa la consola (RESPUESTA API).",
-                "Error",
-                javax.swing.JOptionPane.ERROR_MESSAGE);
+                    "No se pudo agregar el alumno. Revisa la consola (RESPUESTA API).",
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BAgregarActionPerformed
 
     private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BActualizarActionPerformed
         String id = Tid.getText();
         String nom = TNombre.getText();
-        String num= TNumero.getText().trim();
-
+        String num = TNumero.getText().trim();
 
         String[] valores = new String[]{id, nom, ciclo, estado, gm, gru};
 
@@ -399,7 +392,7 @@ public class FUsuarios extends javax.swing.JFrame {
     private void BBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBorrarActionPerformed
         String id = Tid.getText();
         String nom = TNombre.getText();
-        String num= TNumero.getText().trim();
+        String num = TNumero.getText().trim();
         String estado = CBEstado.getSelectedItem().toString();
         String gm = TGmail.getText();
         String gru = TGrupo.getText();
@@ -415,7 +408,7 @@ public class FUsuarios extends javax.swing.JFrame {
         String query = niveles + "WHERE alumnos_idalumnos = '" + id + "' " + grupo;
 
         int ok = cnx.crearPDF("Tarea", "Promedio Mensual de Tareas",
-            query, new float[]{0.5f, 0.5f}, "promedio_mensual");
+                query, new float[]{0.5f, 0.5f}, "promedio_mensual");
 
         if (ok == 1) {
             cnx.visualizarPDF("promedio_mensual");

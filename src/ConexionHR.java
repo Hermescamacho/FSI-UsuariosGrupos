@@ -566,26 +566,22 @@ public class ConexionHR {
         String[] cols = null;
 
         switch (tabla) {
-            case "alumnos":
+            case "usuarios":
                 cols = new String[]{
-                    "idalumnos",
-                    "nombrea",
-                    "ciclo",
-                    "grupo",
-                    "email",
-                    "estatus"
+                    "idusuarios",
+                    "nombreu",
+                    "telefono",
+                    "fotou"
                 };
                 break;
 
-            case "tareas":
+            case "grupos":
                 cols = new String[]{
-                    "idtareas",
-                    "nombret",
-                    "materia",
-                    "calificacion",
-                    "fecha_asignada",
-                    "fecha_limite",
-                    "indicaciones"
+                    "idgrupos",
+                    "nombreg",
+                    "descripcion",
+                    "fotog"
+
                 };
                 break;
         }
