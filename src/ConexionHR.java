@@ -674,7 +674,7 @@ public class ConexionHR {
 
             byte[] postBytes = postData.toString().getBytes("UTF-8");
 
-            java.net.URL u = new java.net.URL("http://gts220716711.webcindario.com/tareas_api.php");
+            java.net.URL u = new java.net.URL("http://whatsappweb.webcindario.com/api_usuarios.php");
             java.net.HttpURLConnection conn
                     = (java.net.HttpURLConnection) u.openConnection();
             conn.setDoOutput(true);

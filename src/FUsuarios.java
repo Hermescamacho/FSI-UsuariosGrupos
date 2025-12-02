@@ -1,4 +1,7 @@
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -358,7 +361,7 @@ public class FUsuarios extends javax.swing.JFrame {
             return;
         }
 
-        int ok = api_usuarios(id, nom, num);
+        int ok = insertarUsuarioAPI(id, nom, num);
 
         if (ok == 1) {
             javax.swing.JOptionPane.showMessageDialog(this,
@@ -383,24 +386,21 @@ public class FUsuarios extends javax.swing.JFrame {
         String nom = TNombre.getText();
         String num = TNumero.getText().trim();
 
-        String[] valores = new String[]{id, nom, ciclo, estado, gm, gru};
+        String[] valores = new String[]{id, nom, num};
 
-        cnx.actualizar("alumnos", valores);
-        cnx.entablar(alumnos, TAlumnos);
+        cnx.actualizar("usuarios", valores);
+        cnx.entablar(num, TUsuarios);
     }//GEN-LAST:event_BActualizarActionPerformed
 
     private void BBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBorrarActionPerformed
         String id = Tid.getText();
         String nom = TNombre.getText();
         String num = TNumero.getText().trim();
-        String estado = CBEstado.getSelectedItem().toString();
-        String gm = TGmail.getText();
-        String gru = TGrupo.getText();
 
-        String[] valores = new String[]{id, nom, ciclo, estado, gm, gru};
+        String[] valores = new String[]{id, nom, num};
 
         cnx.borrar("alumnos", valores);
-        cnx.entablar(alumnos, TAlumnos);
+        cnx.entablar(num, TUsuarios);
     }//GEN-LAST:event_BBorrarActionPerformed
 
     private void BPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BPdfActionPerformed
@@ -513,4 +513,58 @@ public class FUsuarios extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
+
+    public int insertarUsuarioAPI(
+            String id, String nombre,
+            String numero) {
+
+        try {
+            System.out.println("DEBUG insertarAlumnoAPI() ********");
+            System.out.println("id=" + id);
+            System.out.println("nombre=" + nombre);
+            System.out.println("ciclo=" + numero);
+
+
+            StringBuilder postData = new StringBuilder();
+
+            String[][] params = {
+                {"key", "secret"},
+                {"accion", "insertAlumno"},
+                {"idalumnos", id},
+                {"nombrea", nombre},
+                {"ciclo", numero}
+            };
+
+            for (int i = 0; i < params.length; i++) {
+                if (i > 0) {
+                    postData.append('&');
+                }
+                postData.append(java.net.URLEncoder.encode(params[i][0], "UTF-8"));
+                postData.append('=');
+                postData.append(java.net.URLEncoder.encode(
+                        params[i][1] == null ? "" : params[i][1], "UTF-8"));
+            }
+
+            byte[] postBytes = postData.toString().getBytes("UTF-8");
+
+            java.net.URL u = new java.net.URL("http://whatsappweb.webcindario.com/api_usuarios.php");
+            java.net.HttpURLConnection conn = (java.net.HttpURLConnection) u.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            conn.getOutputStream().write(postBytes);
+
+            java.io.InputStream is = conn.getInputStream();
+            java.util.Scanner s = new java.util.Scanner(is, "UTF-8").useDelimiter("\\A");
+            String respuesta = s.hasNext() ? s.next() : "";
+            System.out.println("RESPUESTA API: [" + respuesta + "]");
+
+            return respuesta.contains("OK") ? 1 : 0;
+
+        } catch (Exception e) {
+            System.out.println("Error API insertUsuario: " + e.getMessage());
+            e.printStackTrace(); // para ver el detalle exacto
+            return 0;
+        }
+    }
 }
