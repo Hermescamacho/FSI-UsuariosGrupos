@@ -8,7 +8,7 @@ public class FUsuarios extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FUsuarios.class.getName());
     //----------------------------------------------------------------------------------//
-    String url = "http://gts220716711.webcindario.com/mysql.php";
+    String url = "http://whatsappweb.webcindario.com/mysql.php";
     ConexionHR cnx = new ConexionHR(url);
 
 
@@ -71,7 +71,7 @@ public class FUsuarios extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(102, 153, 255));
         jLabel11.setText("USUARIOS");
         PTitulo.add(jLabel11);
-        jLabel11.setBounds(150, 8, 250, 40);
+        jLabel11.setBounds(40, 20, 250, 40);
         PTitulo.add(jLabel8);
         jLabel8.setBounds(19, 17, 0, 60);
         PTitulo.add(jLabel10);
@@ -351,100 +351,96 @@ public class FUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_BNuevoActionPerformed
 
     private void BAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAgregarActionPerformed
-//        String id = Tid.getText().trim();
-//        String nom = TNombre.getText().trim();
-//        String ciclo = TCiclo.getText().trim();
-//        String grupo = TGrupo.getText().trim();
-//        String email = TGmail.getText().trim();
-//        String estado = CBEstado.getSelectedItem().toString();
-//
-//        if (id.isEmpty() || nom.isEmpty()) {
-//            javax.swing.JOptionPane.showMessageDialog(this,
-//                "ID y Nombre son obligatorios.",
-//                "Datos incompletos",
-//                javax.swing.JOptionPane.WARNING_MESSAGE);
-//            return;
-//        }
-//
-//        int ok = insertarAlumnoAPI(id, nom, ciclo, grupo, email, estado);
-//
-//        if (ok == 1) {
-//            javax.swing.JOptionPane.showMessageDialog(this,
-//                "Alumno agregado correctamente.",
-//                "Éxito",
-//                javax.swing.JOptionPane.INFORMATION_MESSAGE);
-//
-//            // Recargar la tabla de alumnos
-//            String consulta = "SELECT idalumnos, nombrea, ciclo FROM alumnos ORDER BY nombrea";
-//            cnx.entablar(consulta, TAlumnos);
-//
-//        } else {
-//            javax.swing.JOptionPane.showMessageDialog(this,
-//                "No se pudo agregar el alumno. Revisa la consola (RESPUESTA API).",
-//                "Error",
-//                javax.swing.JOptionPane.ERROR_MESSAGE);
-//        }
+        String id = Tid.getText().trim();
+        String nom = TNombre.getText().trim();
+        String num= TNumero.getText().trim();
+
+
+        if (id.isEmpty() || nom.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "ID y Nombre son obligatorios.",
+                "Datos incompletos",
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int ok = api_usuarios(id, nom, num);
+
+        if (ok == 1) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Alumno agregado correctamente.",
+                "Éxito",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+            // Recargar la tabla de alumnos
+            String consulta = "SELECT idusuario, nombreu, telefono FROM usuarios ORDER BY nombre";
+            cnx.entablar(consulta, TUsuarios);
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "No se pudo agregar el alumno. Revisa la consola (RESPUESTA API).",
+                "Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_BAgregarActionPerformed
 
     private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BActualizarActionPerformed
-//        String id = Tid.getText();
-//        String nom = TNombre.getText();
-//        String ciclo = TCiclo.getText();
-//        String estado = CBEstado.getSelectedItem().toString();
-//        String gm = TGmail.getText();
-//        String gru = TGrupo.getText();
-//
-//        String[] valores = new String[]{id, nom, ciclo, estado, gm, gru};
-//
-//        cnx.actualizar("alumnos", valores);
-//        cnx.entablar(alumnos, TAlumnos);
+        String id = Tid.getText();
+        String nom = TNombre.getText();
+        String num= TNumero.getText().trim();
+
+
+        String[] valores = new String[]{id, nom, ciclo, estado, gm, gru};
+
+        cnx.actualizar("alumnos", valores);
+        cnx.entablar(alumnos, TAlumnos);
     }//GEN-LAST:event_BActualizarActionPerformed
 
     private void BBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBorrarActionPerformed
-//        String id = Tid.getText();
-//        String nom = TNombre.getText();
-//        String ciclo = TCiclo.getText();
-//        String estado = CBEstado.getSelectedItem().toString();
-//        String gm = TGmail.getText();
-//        String gru = TGrupo.getText();
-//
-//        String[] valores = new String[]{id, nom, ciclo, estado, gm, gru};
-//
-//        cnx.borrar("alumnos", valores);
-//        cnx.entablar(alumnos, TAlumnos);
+        String id = Tid.getText();
+        String nom = TNombre.getText();
+        String num= TNumero.getText().trim();
+        String estado = CBEstado.getSelectedItem().toString();
+        String gm = TGmail.getText();
+        String gru = TGrupo.getText();
+
+        String[] valores = new String[]{id, nom, ciclo, estado, gm, gru};
+
+        cnx.borrar("alumnos", valores);
+        cnx.entablar(alumnos, TAlumnos);
     }//GEN-LAST:event_BBorrarActionPerformed
 
     private void BPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BPdfActionPerformed
-//        String id = Tid.getText();
-//        String query = niveles + "WHERE alumnos_idalumnos = '" + id + "' " + grupo;
-//
-//        int ok = cnx.crearPDF("Tarea", "Promedio Mensual de Tareas",
-//            query, new float[]{0.5f, 0.5f}, "promedio_mensual");
-//
-//        if (ok == 1) {
-//            cnx.visualizarPDF("promedio_mensual");
-//
-//        } else {
-//            System.out.println("PDF no generado");
-//        }
+        String id = Tid.getText();
+        String query = niveles + "WHERE alumnos_idalumnos = '" + id + "' " + grupo;
+
+        int ok = cnx.crearPDF("Tarea", "Promedio Mensual de Tareas",
+            query, new float[]{0.5f, 0.5f}, "promedio_mensual");
+
+        if (ok == 1) {
+            cnx.visualizarPDF("promedio_mensual");
+
+        } else {
+            System.out.println("PDF no generado");
+        }
     }//GEN-LAST:event_BPdfActionPerformed
 
     private void BGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGraficaActionPerformed
-//        String id = Tid.getText();
-//        String query = niveles + "WHERE alumnos_idalumnos = '" + id + "' " + grupo;
-//
-//        ArrayList<String> series = new ArrayList();
-//        ArrayList<ArrayList<String>> datos = new ArrayList();
-//
-//        datos = cnx.consultar(query);
-//
-//        series.add(id);
-//
-//        GraficaXY graf = new GraficaXY("Promedio Mensual de Tareas", "Meses", "Promedio", series, datos);
-//
-//        PFondo.removeAll();
-//        PFondo.add(graf.chartPanel);
-//        PFondo.updateUI();
+        String id = Tid.getText();
+        String query = niveles + "WHERE alumnos_idalumnos = '" + id + "' " + grupo;
+
+        ArrayList<String> series = new ArrayList();
+        ArrayList<ArrayList<String>> datos = new ArrayList();
+
+        datos = cnx.consultar(query);
+
+        series.add(id);
+
+        GraficaXY graf = new GraficaXY("Promedio Mensual de Tareas", "Meses", "Promedio", series, datos);
+
+        PFondo.removeAll();
+        PFondo.add(graf.chartPanel);
+        PFondo.updateUI();
     }//GEN-LAST:event_BGraficaActionPerformed
 
     private void BBuscarAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarAlumnosActionPerformed
